@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Cocktail App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alcoholic">alcoholic</string>
+    <string name="non_alcoholic">non-alcoholic</string>
+    <string name="category">Category</string>
+    <string name="glass_type">Glass Type</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+</resources>
