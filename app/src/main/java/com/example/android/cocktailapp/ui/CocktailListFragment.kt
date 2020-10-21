@@ -5,17 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.cocktailapp.R
-import com.example.android.cocktailapp.api.CocktailApi
-import com.example.android.cocktailapp.api.DrinksDetails
-import com.example.android.cocktailapp.databinding.FragmentCocktailDetailBinding
 import com.example.android.cocktailapp.databinding.FragmentDrinksListBinding
 import com.example.android.cocktailapp.recyclerView.CocktailAdapter
 import com.example.android.cocktailapp.recyclerView.CocktailItemListener
@@ -47,7 +41,7 @@ class CocktailListFragment : Fragment() {
         val adapter = CocktailAdapter(CocktailItemListener {cocktailId ->
             val action = CocktailListFragmentDirections.actionDrinksListFragmentToCocktailDetailFragment(cocktailId)
             this.findNavController().navigate(action)
-        })
+        }, sharedViewModel)
         binding!!.cocktailsListRecyclerView.adapter = adapter
         binding!!.cocktailsListRecyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -57,7 +51,7 @@ class CocktailListFragment : Fragment() {
                 adapter.drinks = newDrinksList
             })
 
-            sharedViewModel.onFavoriteClicked.observe(it, Observer{isTrue ->
+            sharedViewModel.onFavoriteClicked.observe(it, Observer{ isTrue ->
                 if(isTrue) {
                     val action =
                         CocktailListFragmentDirections.actionDrinksListFragmentToFavoriteCocktailsFragment()

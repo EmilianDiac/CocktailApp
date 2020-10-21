@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.android.cocktailapp.R
 import com.example.android.cocktailapp.databinding.ActivityMainBinding
 import com.example.android.cocktailapp.viewModels.MainActivityViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainActivityViewModel: MainActivityViewModel
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         binding.mainActivityViewModel = mainActivityViewModel
 
-        mainActivityViewModel.error.observe(this, Observer {
+        mainActivityViewModel.mainActivityToastMessage.observe(this, Observer {
             if(it != null) {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.favorites_navigation_bar){
+        if(item.itemId == R.id.favorites_navigation_bar && !mainActivityViewModel.onFavoriteClicked.value!!){
             mainActivityViewModel.onFavoriteClicked.value = true
             return true
         }

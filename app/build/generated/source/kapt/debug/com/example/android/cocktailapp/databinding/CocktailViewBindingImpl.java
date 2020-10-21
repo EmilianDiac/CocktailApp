@@ -16,6 +16,7 @@ public class CocktailViewBindingImpl extends CocktailViewBinding implements com.
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.cocktailImage, 1);
         sViewsWithIds.put(R.id.cocktailName, 2);
+        sViewsWithIds.put(R.id.favoriteButton, 3);
     }
     // views
     @NonNull
@@ -28,12 +29,13 @@ public class CocktailViewBindingImpl extends CocktailViewBinding implements com.
     // Inverse Binding Event Handlers
 
     public CocktailViewBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
     }
     private CocktailViewBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.ImageView) bindings[1]
             , (android.widget.TextView) bindings[2]
+            , (android.widget.ImageButton) bindings[3]
             );
         this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);

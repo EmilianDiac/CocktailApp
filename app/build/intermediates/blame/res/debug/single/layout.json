@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_favorite_cocktails.xml",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\fragment_favorite_cocktails.xml"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_drinks_list.xml",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\fragment_drinks_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\cocktail_view.xml",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\cocktail_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_cocktail_detail.xml",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\fragment_cocktail_detail.xml"
+    }
+]

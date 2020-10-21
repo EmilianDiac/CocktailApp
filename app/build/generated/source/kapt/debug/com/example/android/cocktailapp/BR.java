@@ -7,5 +7,7 @@ public class BR {
 
   public static final int cocktail = 2;
 
-  public static final int mainActivityViewModel = 3;
+  public static final int favoritesViewModel = 3;
+
+  public static final int mainActivityViewModel = 4;
 }

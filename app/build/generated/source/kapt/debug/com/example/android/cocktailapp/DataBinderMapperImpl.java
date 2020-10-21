@@ -10,6 +10,7 @@ import com.example.android.cocktailapp.databinding.ActivityMainBindingImpl;
 import com.example.android.cocktailapp.databinding.CocktailViewBindingImpl;
 import com.example.android.cocktailapp.databinding.FragmentCocktailDetailBindingImpl;
 import com.example.android.cocktailapp.databinding.FragmentDrinksListBindingImpl;
+import com.example.android.cocktailapp.databinding.FragmentFavoriteCocktailsBindingImpl;
 import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.lang.Object;
@@ -29,13 +30,16 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
   private static final int LAYOUT_FRAGMENTDRINKSLIST = 4;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(4);
+  private static final int LAYOUT_FRAGMENTFAVORITECOCKTAILS = 5;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(5);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.android.cocktailapp.R.layout.activity_main, LAYOUT_ACTIVITYMAIN);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.android.cocktailapp.R.layout.cocktail_view, LAYOUT_COCKTAILVIEW);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.android.cocktailapp.R.layout.fragment_cocktail_detail, LAYOUT_FRAGMENTCOCKTAILDETAIL);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.android.cocktailapp.R.layout.fragment_drinks_list, LAYOUT_FRAGMENTDRINKSLIST);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.android.cocktailapp.R.layout.fragment_favorite_cocktails, LAYOUT_FRAGMENTFAVORITECOCKTAILS);
   }
 
   @Override
@@ -70,6 +74,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new FragmentDrinksListBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for fragment_drinks_list is invalid. Received: " + tag);
+        }
+        case  LAYOUT_FRAGMENTFAVORITECOCKTAILS: {
+          if ("layout/fragment_favorite_cocktails_0".equals(tag)) {
+            return new FragmentFavoriteCocktailsBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for fragment_favorite_cocktails is invalid. Received: " + tag);
         }
       }
     }
@@ -116,24 +126,26 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerBrLookup {
-    static final SparseArray<String> sKeys = new SparseArray<String>(4);
+    static final SparseArray<String> sKeys = new SparseArray<String>(5);
 
     static {
       sKeys.put(0, "_all");
       sKeys.put(1, "clickListener");
       sKeys.put(2, "cocktail");
-      sKeys.put(3, "mainActivityViewModel");
+      sKeys.put(3, "favoritesViewModel");
+      sKeys.put(4, "mainActivityViewModel");
     }
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(4);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(5);
 
     static {
       sKeys.put("layout/activity_main_0", com.example.android.cocktailapp.R.layout.activity_main);
       sKeys.put("layout/cocktail_view_0", com.example.android.cocktailapp.R.layout.cocktail_view);
       sKeys.put("layout/fragment_cocktail_detail_0", com.example.android.cocktailapp.R.layout.fragment_cocktail_detail);
       sKeys.put("layout/fragment_drinks_list_0", com.example.android.cocktailapp.R.layout.fragment_drinks_list);
+      sKeys.put("layout/fragment_favorite_cocktails_0", com.example.android.cocktailapp.R.layout.fragment_favorite_cocktails);
     }
   }
 }

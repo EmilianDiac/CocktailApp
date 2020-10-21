@@ -9,10 +9,10 @@
         android:id="@+id/drinksListFragment"
         android:name="com.example.android.cocktailapp.ui.CocktailListFragment"
         android:label="fragment_drinks_list"
-        tools:layout="@layout/fragment_drinks_list" >
+        tools:layout="@layout/fragment_drinks_list">
         <action
             android:id="@+id/action_drinksListFragment_to_cocktailDetailFragment"
-            app:destination="@id/cocktailDetailFragment"/>
+            app:destination="@id/cocktailDetailFragment" />
         <action
             android:id="@+id/action_drinksListFragment_to_favoriteCocktailsFragment"
             app:destination="@id/favoriteCocktailsFragment" />
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/cocktailDetailFragment"
         android:name="com.example.android.cocktailapp.ui.CocktailDetailFragment"
-        android:label="CocktailDetailFragment" >
+        android:label="CocktailDetailFragment">
         <argument
             android:name="cocktailId"
             app:argType="long" />
