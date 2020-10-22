@@ -13,7 +13,7 @@ import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.example.android.cocktailapp.R;
-import com.example.android.cocktailapp.api.Cocktail;
+import com.example.android.cocktailapp.domain.DomainCocktail;
 import com.example.android.cocktailapp.recyclerView.CocktailItemListener;
 import java.lang.Deprecated;
 import java.lang.Object;
@@ -29,7 +29,7 @@ public abstract class CocktailViewBinding extends ViewDataBinding {
   public final ImageButton favoriteButton;
 
   @Bindable
-  protected Cocktail mCocktail;
+  protected DomainCocktail mCocktail;
 
   @Bindable
   protected CocktailItemListener mClickListener;
@@ -42,10 +42,10 @@ public abstract class CocktailViewBinding extends ViewDataBinding {
     this.favoriteButton = favoriteButton;
   }
 
-  public abstract void setCocktail(@Nullable Cocktail cocktail);
+  public abstract void setCocktail(@Nullable DomainCocktail cocktail);
 
   @Nullable
-  public Cocktail getCocktail() {
+  public DomainCocktail getCocktail() {
     return mCocktail;
   }
 

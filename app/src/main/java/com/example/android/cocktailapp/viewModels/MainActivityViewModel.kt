@@ -1,23 +1,26 @@
 package com.example.android.cocktailapp.viewModels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.android.cocktailapp.api.Cocktail
+import android.app.Application
+import android.widget.Toast
+import androidx.lifecycle.*
+import com.example.android.cocktailapp.api.NetworkCocktail
 import com.example.android.cocktailapp.api.CocktailApi
+import com.example.android.cocktailapp.database.CocktailRoomDatabase
+import com.example.android.cocktailapp.domain.DomainCocktail
+import com.example.android.cocktailapp.repository.CocktailRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.IOException
 
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
+
+    val cocktailRepository: CocktailRepository
+
+    val cocktailList: LiveData<List<DomainCocktail>>
 
     val onFavoriteClicked = MutableLiveData<Boolean>(false)
 
-    val favoriteCocktailToAdd = MutableLiveData<Cocktail>()
-
-    val alcoholic = MutableLiveData<Boolean>()
-    private val _drinks = MutableLiveData<MutableList<Cocktail>>()
-    val drinks: LiveData<MutableList<Cocktail>>
-        get() = _drinks
+    private val alcoholic = MutableLiveData<Boolean>()
 
     //todo make a toast for error in activity
     private val _mainActivityToastMessage = MutableLiveData<String>()
@@ -25,17 +28,29 @@ class MainActivityViewModel : ViewModel() {
         get() = _mainActivityToastMessage
 
     init {
+        val database = CocktailRoomDatabase.getDatabase(application)
+        val cocktailDAO = database.getCocktailDao()
+        cocktailRepository = CocktailRepository(cocktailDAO)
+        cocktailList = cocktailRepository.cocktailsList
         alcoholic.value = false
-        getCocktails()
-//        favoriteCocktailList.value = mutableListOf<Cocktail>()
+        refreshDataFromRepository()
     }
-    private fun getCocktails() {
+
+    private fun refreshDataFromRepository() {
         viewModelScope.launch {
-            try {
-                _drinks.value = CocktailApi.retrofitService.getCocktails().list
-            } catch (e: Exception) {
-               makeToast(e.message.toString())
+            try{
+                cocktailRepository.refreshCocktailList()
+            } catch (networkError: IOException) {
+                if(cocktailList.value.isNullOrEmpty()){
+                    makeToast("Network Error: " + networkError.message.toString())
+                }
             }
+        }
+    }
+
+    fun addToFavorites(domainCocktail: DomainCocktail) {
+        viewModelScope.launch(Dispatchers.IO) {
+            cocktailRepository.addToFavorite(domainCocktail)
         }
     }
 

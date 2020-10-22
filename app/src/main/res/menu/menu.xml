@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/favorites_navigation_bar"
-        android:icon="@android:drawable/btn_star_big_on"
+        android:icon="@drawable/favorite_marked"
         android:title="@string/favorites"
         app:showAsAction="always" />
 </menu>

@@ -11,7 +11,7 @@ data class DatabaseCocktail(
     val name: String,
     @ColumnInfo(name = "image_url") val imageUrl: String,
     @PrimaryKey @ColumnInfo(name = "cocktail_id") val cocktailId: Long,
-    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
+    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean = false
 )
 
 fun List<DatabaseCocktail>.asDomainCocktail(): List<DomainCocktail> {

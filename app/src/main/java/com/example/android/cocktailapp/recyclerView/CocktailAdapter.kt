@@ -1,23 +1,22 @@
 package com.example.android.cocktailapp.recyclerView
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android.cocktailapp.R
-import com.example.android.cocktailapp.api.Cocktail
+import com.example.android.cocktailapp.api.NetworkCocktail
 import com.example.android.cocktailapp.databinding.CocktailViewBinding
+import com.example.android.cocktailapp.domain.DomainCocktail
 import com.example.android.cocktailapp.viewModels.MainActivityViewModel
 
-class CocktailAdapter(private val clickListener: CocktailItemListener, private val sharedViewModel: MainActivityViewModel ) : RecyclerView.Adapter<ViewHolder>() {
+class CocktailAdapter(
+    private val clickListener: CocktailItemListener,
+    private val sharedViewModel: MainActivityViewModel? = null
+) : RecyclerView.Adapter<ViewHolder>() {
 
 
-    var drinks = mutableListOf<Cocktail>()
+    var drinks = listOf<DomainCocktail>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -38,7 +37,11 @@ class CocktailAdapter(private val clickListener: CocktailItemListener, private v
 
 class ViewHolder(private val binding: CocktailViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(cocktail: Cocktail, clickListener: CocktailItemListener, sharedViewModel: MainActivityViewModel ) {
+    fun bind(
+        cocktail: DomainCocktail,
+        clickListener: CocktailItemListener,
+        sharedViewModel: MainActivityViewModel?
+    ) {
         binding.cocktail = cocktail
         binding.clickListener = clickListener
         binding.cocktailName.text = cocktail.name
@@ -48,9 +51,17 @@ class ViewHolder(private val binding: CocktailViewBinding) : RecyclerView.ViewHo
                 .into(binding.cocktailImage)
         }
         binding.favoriteButton.setOnClickListener {
-            sharedViewModel.favoriteCocktailToAdd.value = cocktail
+            sharedViewModel?.addToFavorites(cocktail)
         }
+        binding.favoriteButton.setImageResource(
+            if (cocktail.isFavorite) {
+                R.drawable.favorite_marked
+            } else {
+                R.drawable.favorite_unmarked
+            }
+        )
     }
+
     companion object {
         fun from(parent: ViewGroup): ViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
@@ -61,5 +72,5 @@ class ViewHolder(private val binding: CocktailViewBinding) : RecyclerView.ViewHo
 }
 
 class CocktailItemListener(val clickListener: (cocktailId: Long) -> Unit) {
-    fun onClick(cocktail: Cocktail) = clickListener(cocktail.cocktailId)
+    fun onClick(cocktail: DomainCocktail) = clickListener(cocktail.id)
 }

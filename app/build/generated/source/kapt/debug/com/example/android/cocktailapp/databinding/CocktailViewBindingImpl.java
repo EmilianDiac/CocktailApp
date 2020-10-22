@@ -70,7 +70,7 @@ public class CocktailViewBindingImpl extends CocktailViewBinding implements com.
             setClickListener((com.example.android.cocktailapp.recyclerView.CocktailItemListener) variable);
         }
         else if (BR.cocktail == variableId) {
-            setCocktail((com.example.android.cocktailapp.api.Cocktail) variable);
+            setCocktail((com.example.android.cocktailapp.domain.DomainCocktail) variable);
         }
         else {
             variableSet = false;
@@ -86,7 +86,7 @@ public class CocktailViewBindingImpl extends CocktailViewBinding implements com.
         notifyPropertyChanged(BR.clickListener);
         super.requestRebind();
     }
-    public void setCocktail(@Nullable com.example.android.cocktailapp.api.Cocktail Cocktail) {
+    public void setCocktail(@Nullable com.example.android.cocktailapp.domain.DomainCocktail Cocktail) {
         this.mCocktail = Cocktail;
         synchronized(this) {
             mDirtyFlags |= 0x2L;
@@ -110,7 +110,7 @@ public class CocktailViewBindingImpl extends CocktailViewBinding implements com.
             mDirtyFlags = 0;
         }
         com.example.android.cocktailapp.recyclerView.CocktailItemListener clickListener = mClickListener;
-        com.example.android.cocktailapp.api.Cocktail cocktail = mCocktail;
+        com.example.android.cocktailapp.domain.DomainCocktail cocktail = mCocktail;
         // batch finished
         if ((dirtyFlags & 0x4L) != 0) {
             // api target 1
@@ -125,7 +125,7 @@ public class CocktailViewBindingImpl extends CocktailViewBinding implements com.
         // clickListener
         com.example.android.cocktailapp.recyclerView.CocktailItemListener clickListener = mClickListener;
         // cocktail
-        com.example.android.cocktailapp.api.Cocktail cocktail = mCocktail;
+        com.example.android.cocktailapp.domain.DomainCocktail cocktail = mCocktail;
         // clickListener != null
         boolean clickListenerJavaLangObjectNull = false;
 

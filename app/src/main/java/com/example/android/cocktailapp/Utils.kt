@@ -1,12 +1,12 @@
 package com.example.android.cocktailapp
 
-import com.example.android.cocktailapp.api.Cocktail
-import com.example.android.cocktailapp.database.FavoriteCocktail
+import com.example.android.cocktailapp.api.NetworkCocktail
+import com.example.android.cocktailapp.database.DatabaseCocktail
 
-fun List<FavoriteCocktail>.toCocktail(): MutableList<Cocktail> {
-    val list = mutableListOf<Cocktail>()
+fun List<DatabaseCocktail>.toCocktail(): MutableList<NetworkCocktail> {
+    val list = mutableListOf<NetworkCocktail>()
     for (favoriteCocktail in this) {
-        val cocktail = Cocktail(
+        val cocktail = NetworkCocktail(
             name = favoriteCocktail.name,
             imageUrl = favoriteCocktail.imageUrl.replace("\\","" ),
             cocktailId = favoriteCocktail.cocktailId

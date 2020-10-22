@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cocktail"
-            type="com.example.android.cocktailapp.api.Cocktail" />
+            type="com.example.android.cocktailapp.domain.DomainCocktail" />
 
         <variable
             name="clickListener"
@@ -50,11 +50,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cocktailName"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star"
-        tools:layout_editor_absoluteX="357dp" />
+        app:srcCompat="@drawable/favorite_unmarked" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

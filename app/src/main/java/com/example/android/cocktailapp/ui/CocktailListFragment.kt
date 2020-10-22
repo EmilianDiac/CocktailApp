@@ -47,7 +47,7 @@ class CocktailListFragment : Fragment() {
 
 
         activity?.let {
-            sharedViewModel.drinks.observe(it, Observer { newDrinksList ->
+            sharedViewModel.cocktailList.observe(it, Observer { newDrinksList ->
                 adapter.drinks = newDrinksList
             })
 

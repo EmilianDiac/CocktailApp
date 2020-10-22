@@ -26,16 +26,16 @@ import java.util.Set;
 
 @SuppressWarnings({"unchecked", "deprecation"})
 public final class CocktailRoomDatabase_Impl extends CocktailRoomDatabase {
-  private volatile FavoritesDAO _favoritesDAO;
+  private volatile CocktailDAO _cocktailDAO;
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `favorite_cocktails_table` (`name` TEXT NOT NULL, `image_url` TEXT NOT NULL, `cocktail_id` INTEGER NOT NULL, PRIMARY KEY(`cocktail_id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `favorite_cocktails_table` (`name` TEXT NOT NULL, `image_url` TEXT NOT NULL, `cocktail_id` INTEGER NOT NULL, `is_favorite` INTEGER NOT NULL, PRIMARY KEY(`cocktail_id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94eb6ccb11e41325589a570f16602a54')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8ff4fd2cefa449dc2d96d7f3a2b330ba')");
       }
 
       @Override
@@ -79,22 +79,23 @@ public final class CocktailRoomDatabase_Impl extends CocktailRoomDatabase {
 
       @Override
       protected RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsFavoriteCocktailsTable = new HashMap<String, TableInfo.Column>(3);
+        final HashMap<String, TableInfo.Column> _columnsFavoriteCocktailsTable = new HashMap<String, TableInfo.Column>(4);
         _columnsFavoriteCocktailsTable.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFavoriteCocktailsTable.put("image_url", new TableInfo.Column("image_url", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFavoriteCocktailsTable.put("cocktail_id", new TableInfo.Column("cocktail_id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFavoriteCocktailsTable.put("is_favorite", new TableInfo.Column("is_favorite", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysFavoriteCocktailsTable = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesFavoriteCocktailsTable = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoFavoriteCocktailsTable = new TableInfo("favorite_cocktails_table", _columnsFavoriteCocktailsTable, _foreignKeysFavoriteCocktailsTable, _indicesFavoriteCocktailsTable);
         final TableInfo _existingFavoriteCocktailsTable = TableInfo.read(_db, "favorite_cocktails_table");
         if (! _infoFavoriteCocktailsTable.equals(_existingFavoriteCocktailsTable)) {
-          return new RoomOpenHelper.ValidationResult(false, "favorite_cocktails_table(com.example.android.cocktailapp.database.FavoriteCocktail).\n"
+          return new RoomOpenHelper.ValidationResult(false, "favorite_cocktails_table(com.example.android.cocktailapp.database.DatabaseCocktail).\n"
                   + " Expected:\n" + _infoFavoriteCocktailsTable + "\n"
                   + " Found:\n" + _existingFavoriteCocktailsTable);
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "94eb6ccb11e41325589a570f16602a54", "f1490bdaa97498366977f5b09a955990");
+    }, "8ff4fd2cefa449dc2d96d7f3a2b330ba", "44a57e9ad080854fd0f6be1647c23443");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -130,20 +131,20 @@ public final class CocktailRoomDatabase_Impl extends CocktailRoomDatabase {
   @Override
   protected Map<Class<?>, List<Class<?>>> getRequiredTypeConverters() {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
-    _typeConvertersMap.put(FavoritesDAO.class, FavoritesDAO_Impl.getRequiredConverters());
+    _typeConvertersMap.put(CocktailDAO.class, CocktailDAO_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
   @Override
-  public FavoritesDAO favoritesDao() {
-    if (_favoritesDAO != null) {
-      return _favoritesDAO;
+  public CocktailDAO getCocktailDao() {
+    if (_cocktailDAO != null) {
+      return _cocktailDAO;
     } else {
       synchronized(this) {
-        if(_favoritesDAO == null) {
-          _favoritesDAO = new FavoritesDAO_Impl(this);
+        if(_cocktailDAO == null) {
+          _cocktailDAO = new CocktailDAO_Impl(this);
         }
-        return _favoritesDAO;
+        return _cocktailDAO;
       }
     }
   }
