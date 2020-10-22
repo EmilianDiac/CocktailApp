@@ -17,5 +17,4 @@ interface FavoritesDAO{
 
     @Query("DELETE FROM favorite_cocktails_table")
     suspend fun deleteAllFavoriteCocktails()
-
 }
