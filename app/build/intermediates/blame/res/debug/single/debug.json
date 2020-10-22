@@ -20,12 +20,12 @@
         "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_favorites.xml.flat",
-        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\content_favorites.xml"
-    },
-    {
         "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_background.png.flat",
         "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_favorites.xml.flat",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\content_favorites.xml"
     },
     {
         "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
