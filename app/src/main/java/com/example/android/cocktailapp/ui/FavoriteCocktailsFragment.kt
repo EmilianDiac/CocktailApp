@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.cocktailapp.R
 import com.example.android.cocktailapp.databinding.FragmentFavoriteCocktailsBinding
+import com.example.android.cocktailapp.manualDependencyInjection.MyApplication
 import com.example.android.cocktailapp.recyclerView.CocktailAdapter
 import com.example.android.cocktailapp.recyclerView.CocktailItemListener
+import com.example.android.cocktailapp.repository.CocktailRepository
 import com.example.android.cocktailapp.viewModels.FavoritesViewModel
 import com.example.android.cocktailapp.viewModels.MainActivityViewModel
 
@@ -20,17 +22,21 @@ import com.example.android.cocktailapp.viewModels.MainActivityViewModel
 class FavoriteCocktailsFragment : Fragment() {
 
     private lateinit var favoritesViewModel: FavoritesViewModel
-    private val sharedViewModel: MainActivityViewModel by activityViewModels()
+    private lateinit var cocktailRepository: CocktailRepository
+    private lateinit var sharedViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        favoritesViewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
+        val appContainer = (activity?.application as MyApplication).appContainer
+        cocktailRepository = appContainer.cocktailRepository
+        sharedViewModel = appContainer.mainActivityViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        favoritesViewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
         return inflater.inflate(R.layout.fragment_favorite_cocktails, container, false)
     }
 
@@ -40,13 +46,13 @@ class FavoriteCocktailsFragment : Fragment() {
         favoritesViewModel.instantiateFavoritesCocktailList(sharedViewModel.cocktailRepository)
 
 
-        val adapter = CocktailAdapter(CocktailItemListener{cocktailId ->
+        val adapter = CocktailAdapter(CocktailItemListener { cocktailId ->
             sharedViewModel.makeToast(cocktailId.toString())
         })
 
         binding.favoritesRecyclerView.adapter = adapter
         binding.favoritesRecyclerView.layoutManager = LinearLayoutManager(context)
-        favoritesViewModel.favoriteCocktailsList.observe(viewLifecycleOwner, Observer{
+        favoritesViewModel.favoriteCocktailsList.observe(viewLifecycleOwner, Observer {
             adapter.drinks = it
         })
 

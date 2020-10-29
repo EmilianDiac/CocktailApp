@@ -7,23 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.cocktailapp.R
 import com.example.android.cocktailapp.databinding.FragmentDrinksListBinding
+import com.example.android.cocktailapp.manualDependencyInjection.MyApplication
 import com.example.android.cocktailapp.recyclerView.CocktailAdapter
 import com.example.android.cocktailapp.recyclerView.CocktailItemListener
+import com.example.android.cocktailapp.viewModels.CocktailListViewModel
 import com.example.android.cocktailapp.viewModels.MainActivityViewModel
 
 
 class CocktailListFragment : Fragment() {
 
-    private val sharedViewModel: MainActivityViewModel by activityViewModels()
+    private lateinit var sharedViewModel: MainActivityViewModel
+
+    private lateinit var cocktailListViewModel: CocktailListViewModel
 
     private var binding: FragmentDrinksListBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val appContainer = (activity?.application as MyApplication).appContainer
+        sharedViewModel = appContainer.mainActivityViewModel
+        cocktailListViewModel = ViewModelProvider(this).get(CocktailListViewModel::class.java)
+        cocktailListViewModel.setRepository(appContainer.cocktailRepository)
     }
 
     override fun onCreateView(
@@ -46,9 +55,19 @@ class CocktailListFragment : Fragment() {
         binding!!.cocktailsListRecyclerView.layoutManager = LinearLayoutManager(context)
 
 
-        activity?.let {
-            sharedViewModel.cocktailList.observe(it, Observer { newDrinksList ->
+        activity?.let {it
+            cocktailListViewModel.cocktailList.observe(it, Observer { newDrinksList ->
                 adapter.drinks = newDrinksList
+            })
+
+            cocktailListViewModel.toastMessage.observe(it, Observer { message ->
+                sharedViewModel.makeToast(message)
+            })
+
+            sharedViewModel.refreshPressed.observe(it, Observer {value ->
+                if(value) {
+                    cocktailListViewModel.refreshDataFromRepository()
+                }
             })
 
             sharedViewModel.onFavoriteClicked.observe(it, Observer{ isTrue ->

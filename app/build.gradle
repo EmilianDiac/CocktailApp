@@ -18,6 +18,16 @@ android {
 
         packagingOptions {
             exclude 'META-INF/atomicfu.kotlin_module'
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/ASL2.0'
+            exclude("META-INF/*.kotlin_module")
+
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -68,6 +78,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.1'
     implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'com.google.dagger:dagger:2.29.1'
+    implementation 'com.google.dagger:dagger-compiler:2.29.1'
     kapt 'androidx.room:room-compiler:2.3.0-alpha03'
     implementation 'androidx.room:room-ktx:2.3.0-alpha03'
     testImplementation 'junit:junit:4.12'

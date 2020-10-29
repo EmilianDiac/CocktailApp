@@ -41,7 +41,7 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
 
             return INSTANCE ?: synchronized(this) {
                 INSTANCE = Room.databaseBuilder(
-                    context.applicationContext,
+                    context,
                     CocktailRoomDatabase::class.java,
                     "favorite_cocktails_table"
                 ).build()

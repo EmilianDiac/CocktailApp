@@ -6,22 +6,25 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.cocktailapp.R
 import com.example.android.cocktailapp.databinding.ActivityMainBinding
+import com.example.android.cocktailapp.manualDependencyInjection.MyApplication
 import com.example.android.cocktailapp.viewModels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainActivityViewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
+
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
             this,
             R.layout.activity_main
         )
-        mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        val appContainer = (application as MyApplication).appContainer
+        mainActivityViewModel = appContainer.mainActivityViewModel
         binding.mainActivityViewModel = mainActivityViewModel
 
         mainActivityViewModel.mainActivityToastMessage.observe(this, Observer {
@@ -37,10 +40,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.favorites_navigation_bar && !mainActivityViewModel.onFavoriteClicked.value!!){
-            mainActivityViewModel.onFavoriteClicked.value = true
-            return true
+        when(item.itemId) {
+            R.id.favorites_navigation_bar -> if (!mainActivityViewModel.onFavoriteClicked.value!!) {
+                mainActivityViewModel.onFavoriteClicked.value = true
+            }
+            R.id.refresh_cocktails -> mainActivityViewModel.refreshPressed.value = true
+
         }
+
         return super.onOptionsItemSelected(item)
     }
 }
