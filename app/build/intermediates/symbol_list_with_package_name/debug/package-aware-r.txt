@@ -1911,6 +1911,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id refresh_cocktails
 id reverseSawtooth
 id right
 id right_icon
@@ -2277,6 +2278,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string previous
+string refresh
 string search
 string search_menu_title
 string second_fragment_label

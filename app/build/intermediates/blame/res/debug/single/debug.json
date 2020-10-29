@@ -96,12 +96,12 @@
         "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
-    },
-    {
         "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
         "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_cocktail_detail.xml.flat",
@@ -160,11 +160,11 @@
         "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_drinks_list.xml.flat",
-        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\fragment_drinks_list.xml"
-    },
-    {
         "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_favorite_marked.png.flat",
         "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\favorite_marked.png"
+    },
+    {
+        "merged": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_drinks_list.xml.flat",
+        "source": "C:\\Users\\Emilian\\Desktop\\CocktailApp\\app\\src\\main\\res\\layout\\fragment_drinks_list.xml"
     }
 ]

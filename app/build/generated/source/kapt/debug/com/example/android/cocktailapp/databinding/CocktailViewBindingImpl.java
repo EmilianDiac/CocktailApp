@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.view.View;
 @SuppressWarnings("unchecked")
+@javax.annotation.Generated("Android Data Binding")
 public class CocktailViewBindingImpl extends CocktailViewBinding implements com.example.android.cocktailapp.generated.callback.OnClickListener.Listener {
 
     @Nullable

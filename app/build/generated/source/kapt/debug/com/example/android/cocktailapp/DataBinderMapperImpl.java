@@ -20,7 +20,9 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.annotation.Generated;
 
+@Generated("Android Data Binding")
 public class DataBinderMapperImpl extends DataBinderMapper {
   private static final int LAYOUT_ACTIVITYMAIN = 1;
 
